@@ -1,6 +1,7 @@
 package com.iotasol.spaceattack;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -20,16 +21,16 @@ public class DodgeMenu extends Activity implements OnClickListener {
 	private ImageView iv_freemode, iv_livemode, iv_copyrights, iv_highscores;
 
 	/** Called when the activity is first created. */
-	
+
 	/** StartAppAd object deceleration */
 	private StartAppAd startAppAd = new StartAppAd(this);
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.menu);
-		
+
 		StartAppSearch.showSearchBox(this);
 
 		iv_freemode = (ImageView) this.findViewById(R.id.iv_freemode);
@@ -45,8 +46,6 @@ public class DodgeMenu extends Activity implements OnClickListener {
 
 	}
 
-	
-
 	@Override
 	public void onClick(View v) {
 		int id = v.getId();
@@ -61,14 +60,15 @@ public class DodgeMenu extends Activity implements OnClickListener {
 			goToLifeMode();
 			break;
 		case R.id.iv_highscores:
-			goToHighScores();
+			howToPlay();
 			break;
 		case R.id.btnFreeApp:
 			startAppAd.showAd(new AdDisplayListener() {
 				@Override
 				public void adHidden(Ad ad) {
-					
+
 				}
+
 				@Override
 				public void adDisplayed(Ad ad) {
 
@@ -79,41 +79,33 @@ public class DodgeMenu extends Activity implements OnClickListener {
 	}
 
 	private void goToFreeMode() {
-		
-		startAppAd.showAd(new AdDisplayListener() {
-			
-			@Override
-			public void adHidden(Ad arg0) {
-				Intent intent = new Intent(DodgeMenu.this, DodgeMain.class);
-				intent.putExtra(DodgeMain.PLAY_MODE, false);
-				startActivity(intent);		
-			}
-			
-			@Override
-			public void adDisplayed(Ad arg0) {
-				
-			}
-		});
-		
-		
+
+		Intent intent = new Intent(DodgeMenu.this, DodgeMain.class);
+		intent.putExtra(DodgeMain.PLAY_MODE, false);
+		startActivity(intent);
+
 	}
 
 	private void goToLifeMode() {
 		Intent intent = new Intent(DodgeMenu.this, DodgeMain.class);
 		intent.putExtra(DodgeMain.PLAY_MODE, true);
 		startActivity(intent);
-		
-		
+
 	}
 
 	private void goToCopyrights() {
-		
+		startActivity(new Intent(DodgeMenu.this, DodgeCopyrights.class));
 	}
 
-	private void goToHighScores() {
+	private void howToPlay() {
+
+		AlertDialog.Builder builder = new AlertDialog.Builder(DodgeMenu.this);
+		builder.setTitle("How to play");
+		builder.setMessage("Move your blue circle to the green goal zone, avoiding the enemy dots roaming around the field. Steer by tilting the device, or by using the trackball or D-pad. You can also touch the screen to move to that location. When you reach the goal zone, the level will advance, more dots will be added, and the goal will switch to the other end.");
+		builder.show();
 
 	}
-	
+
 	@Override
 	public void onResume() {
 		super.onResume();
@@ -121,8 +113,8 @@ public class DodgeMenu extends Activity implements OnClickListener {
 	}
 
 	/**
-	 * part of Activity life cycle Need as part of the StartAppAd
-	 * object life cycle
+	 * part of Activity life cycle Need as part of the StartAppAd object life
+	 * cycle
 	 */
 	@Override
 	public void onPause() {

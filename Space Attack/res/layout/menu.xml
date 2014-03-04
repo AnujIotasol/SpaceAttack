@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/bg"
+    android:background="@drawable/ic_bg"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -60,6 +60,9 @@
         android:orientation="vertical" >
 
         <Button
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:background="@drawable/btn_bg"
             android:id="@+id/btnFreeApp"
             android:layout_width="200dp"
             android:layout_height="wrap_content"

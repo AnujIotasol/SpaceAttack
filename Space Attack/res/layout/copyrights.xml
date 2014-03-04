@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_bg"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        tools:ignore="UselessParent" >
+
+        <TextView
+            android:padding="10dp"
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Space Attack is open source project and build using Open Source project Dodge 1.4.3\n© 2010-2012 Brian Nenninger\nwww.dozingcatsoftware.com/Dodge
+\n\nhttp://code.google.com/p/dodge-android\n\nhttps://github.com/AnujIotasol/SpaceAttack.git"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </ScrollView>
+
+</RelativeLayout>
